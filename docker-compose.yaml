@@ -5,7 +5,6 @@ services:
     container_name: nginx
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ./public:/var/www/html
     ports:
       - "8080:80"
     depends_on:
@@ -22,6 +21,7 @@ services:
       - ./:/var/www/html
     networks:
       - php_network
+    command: /bin/sh -c "composer install && php-fpm"
 
 networks:
   php_network:
